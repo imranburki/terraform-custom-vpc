@@ -37,7 +37,7 @@ resource "aws_eip" "nat_eip" {}
 
 resource "aws_nat_gateway" "net_gw" {
   allocation_id = aws_eip.nat_eip.id
-  subnet_id     = aws_subnet.private_subnet.id
+  subnet_id     = aws_subnet.public_subnet.id
 
   tags = {
     Name = "gw NAT"
@@ -81,5 +81,5 @@ resource "aws_route_table_association" "public_subnet_rt_assoc" {
 
 resource "aws_route_table_association" "private_subnet_rt_assoc" {
   subnet_id      = aws_subnet.private_subnet.id
-  route_table_id = aws_route_table.public_subnet-rt.id
+  route_table_id = aws_route_table.private_subnet_subnet-rt.id
 }
